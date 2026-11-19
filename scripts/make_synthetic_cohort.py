@@ -48,7 +48,8 @@ def main():
             sid = f"{pid}_{chr(65 + s)}"
             coords = np.stack(np.unravel_index(np.arange(n), (32, n // 32 + 1)), 1) * 224
             torch.save({"embeddings": torch.from_numpy(x).half(), "coords": torch.from_numpy(coords),
-                        "slide_id": sid, "encoder": "synthetic", "mpp": 0.5, "tile_size": 224},
+                        "slide_id": sid, "encoder": "synthetic", "mpp": 0.5, "tile_size": 224,
+                        "tile_is_aggressive": torch.from_numpy(aggressive)},  # ground truth, fake data only
                        out / "embeddings" / f"{sid}.pt")
             rows.append({"patient_id": pid, "slide_id": sid, "wsi_path": f"{sid}.svs",
                          "time": round(time, 2), "event": event, "age": round(age, 1),

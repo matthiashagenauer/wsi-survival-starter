@@ -25,7 +25,7 @@ dependencies = [
 # the HPC uses `gpu`, which pulls cupy for the GPU filters.
 patching = ["wsi-patching>=0.5.5"]
 gpu = ["wsi-patching[gpu]>=0.5.5"]
-dev = ["pytest>=8", "tifffile", "ruff"]
+dev = ["pytest>=8", "tifffile", "ruff", "jupyterlab"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/wsisurv"]

@@ -16,4 +16,4 @@ filters:
   low_contrast_range: 0.2              # drop near-uniform (glass) tiles; null = off
   otsu_min_tissue_fraction: null       # e.g. 0.35 to require 35% tissue per tile
   pen_filter: false                    # drop tiles with pen marks (needs GPU)
-  remove_edge_depth: 0                 # drop N rings of tiles at the tissue border
+  remove_edge_depth: 1                 # drop the outer ring of tiles: grid tiles past the slide border are black-padded and survive the contrast filter

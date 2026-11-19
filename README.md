@@ -38,6 +38,18 @@ cat runs/synthetic/*/summary.txt
 The synthetic cohort prints its oracle C-index (≈0.71). Models should land at ≈0.60–0.65;
 ≈0.50 means something is broken.
 
+## Walkthrough notebook
+
+`notebooks/walkthrough.ipynb` goes through every step on fake data, with outputs saved so it reads on
+GitHub too: a drawn H&E slide → tiling audit → encoder → fake cohort and censoring → **the Cox loss by
+hand** (risk sets, why the baseline cancels, why batch size 1 fails) → Breslow curves → discrete-time loss
+→ one MIL training fold written out → C-index by hand, td-AUC, Brier vs Kaplan–Meier → attention vs the
+planted "aggressive" tiles → baseline and full CV. About a minute on a laptop CPU.
+
+```bash
+jupyter lab notebooks/walkthrough.ipynb
+```
+
 ## Real data
 
 1. **Cohort table** — copy `data/cohort_template.csv` to `data/cohort.csv`. One row per slide;

@@ -14,3 +14,4 @@ jobs/logs/
 *.mrxs
 *.ndpi
 .DS_Store
+data/walkthrough/
