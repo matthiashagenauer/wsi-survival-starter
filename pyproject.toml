@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wsisurv"
+version = "0.1.0"
+description = "Starter kit: whole-slide images -> foundation-model embeddings -> survival prediction (MIL)."
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "torch>=2.2",
+    "timm>=1.0.15",
+    "huggingface_hub>=0.24",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "pyyaml>=6.0",
+    "openpyxl>=3.1",
+    "scikit-learn>=1.4",
+    "scikit-survival>=0.23",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# Slide reading + tiling. CPU-only machines (laptops) use `patching`;
+# the HPC uses `gpu`, which pulls cupy for the GPU filters.
+patching = ["wsi-patching>=0.5.5"]
+gpu = ["wsi-patching[gpu]>=0.5.5"]
+dev = ["pytest>=8", "tifffile", "ruff"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wsisurv"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

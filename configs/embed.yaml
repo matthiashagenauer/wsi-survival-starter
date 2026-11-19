@@ -1,0 +1,19 @@
+# Stage 1 — slides -> tile embeddings (scripts/embed_slides.py)
+cohort_table: data/cohort.csv          # one row per slide: patient_id, slide_id, wsi_path, time, event
+root_data_dir: /path/to/slides         # relative wsi_path values are resolved against this
+output_dir: embeddings/UNI2_mpp0.5     # writes <slide_id>.pt here; existing files are skipped
+
+model_name: UNI2                       # UNI2 | Virchow2 | H-optimus-1 | resnet50 (open smoke-test baseline)
+weights_path: null                     # local checkpoint (H-optimus-1 only) instead of the HF hub
+
+target_mpp: 0.5                        # µm per pixel = 20x. What UNI2 / Virchow2 / H-optimus-1 were trained on
+tile_size: 224                         # 224 px * 0.5 µm = 112 µm tiles
+use_gpu: true                          # GPU tiling (needs wsi-patching[gpu]); false on a laptop
+slides_per_batch: 4                    # slides patched concurrently
+num_workers: 4                         # producer threads
+
+filters:
+  low_contrast_range: 0.2              # drop near-uniform (glass) tiles; null = off
+  otsu_min_tissue_fraction: null       # e.g. 0.35 to require 35% tissue per tile
+  pen_filter: false                    # drop tiles with pen marks (needs GPU)
+  remove_edge_depth: 0                 # drop N rings of tiles at the tissue border

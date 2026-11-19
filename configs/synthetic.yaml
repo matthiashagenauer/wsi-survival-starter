@@ -1,0 +1,9 @@
+# End-to-end smoke test on fake embeddings: `make synthetic`
+base_config: survival_abmil.yaml
+cohort_table: data/synthetic/cohort.csv
+embedding_dir: data/synthetic/embeddings
+output_dir: runs/synthetic
+epochs: 15
+n_tiles: 256
+lr: 1.0e-3                              # tiny 64-d fake embeddings; keep 2e-4 for real 1536-d features
+device: cpu

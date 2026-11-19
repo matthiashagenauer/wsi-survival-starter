@@ -1,0 +1,29 @@
+# Stage 2 — patient-level survival model, k-fold CV (scripts/train_survival.py)
+cohort_table: data/cohort.csv
+embedding_dir: embeddings/UNI2_mpp0.5
+output_dir: runs
+run_name: abmil_nll
+
+# --- splits ---
+n_folds: 5
+seed: 0
+stratify_on: [event]                   # add e.g. `site` if you pool several cohorts
+val_fraction: 0.0                      # >0: carve a val split out of train, pick the best epoch on it
+
+# --- loss ---
+loss: nll                              # nll (discrete-time, works at any batch size) | cox (needs big batches)
+n_bins: 4                              # nll only: bins at quantiles of training event times
+nll_alpha: 0.0
+
+# --- model ---
+pooling: attention                     # attention | mean
+hidden_dim: 256
+dropout: 0.25
+
+# --- optimisation ---
+epochs: 20
+batch_size: 16                         # patients per step; cox wants >= 32
+n_tiles: 2048                          # tiles sampled per patient per step (eval uses all tiles)
+lr: 2.0e-4
+weight_decay: 1.0e-4
+device: auto

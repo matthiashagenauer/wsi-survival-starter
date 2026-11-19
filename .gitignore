@@ -1,0 +1,16 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
+runs/
+embeddings/
+data/synthetic/
+data/cohort.csv
+jobs/logs/
+*_audit.html
+*.svs
+*.tif
+*.tiff
+*.mrxs
+*.ndpi
+.DS_Store

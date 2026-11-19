@@ -1,0 +1,5 @@
+patient_id,slide_id,wsi_path,time,event,age,stage
+P001,P001_A,P001_A.svs,34.2,1,67,3
+P001,P001_B,P001_B.svs,34.2,1,67,3
+P002,P002_A,P002_A.svs,61.0,0,54,1
+P003,P003_A,P003_A.mrxs,12.5,1,71,4

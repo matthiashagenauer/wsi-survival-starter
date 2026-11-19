@@ -1,0 +1,6 @@
+# Linear baselines on the same folds (scripts/baseline_cox.py). Beat these before trusting MIL.
+base_config: survival_abmil.yaml
+run_name: baselines
+pca_components: 32                     # mean-pooled embedding -> PCA -> ridge Cox
+ridge_alpha: 1.0
+clinical_covariates: []                # e.g. [age, stage] (numeric columns of the cohort table)

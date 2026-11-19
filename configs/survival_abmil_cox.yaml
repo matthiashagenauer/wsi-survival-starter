@@ -1,0 +1,4 @@
+base_config: survival_abmil.yaml
+run_name: abmil_cox
+loss: cox
+batch_size: 32
